@@ -1,0 +1,105 @@
+package org.firstinspires.ftc.teamcode;
+
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.util.ElapsedTime;
+
+import java.util.concurrent.TimeUnit;
+
+@TeleOp(name="ablazeTeleOp", group="TeleOp")
+
+public class ablazeTeleOp extends LinearOpMode {
+
+    /* Declare OpMode members. */
+    HardwarePushbot1 robot = new HardwarePushbot1();   // Use a Pushbot's hardware
+    private ElapsedTime runtime = new ElapsedTime();
+
+    double r = 1;
+    double l = 1;
+
+    double startPositionL = 0;
+    double startPositionR = 0;
+
+
+    @Override
+    public void runOpMode() {
+
+
+        telemetry.update();
+
+        double left;
+        double right;
+        robot.init(hardwareMap);
+
+        waitForStart();
+        while (opModeIsActive()) {
+
+            left = -gamepad1.left_stick_y * 10;
+            right = -gamepad1.right_stick_y * 10;
+
+            robot.rightMotor.setPower(right);
+            robot.leftMotor.setPower(left);
+
+            left = -gamepad1.left_stick_y * 10;
+            right = -gamepad1.right_stick_y * 10;
+
+            robot.rightMotor.setPower(right);
+            robot.leftMotor.setPower(left);
+
+            if(gamepad2.left_bumper){
+                robot.collector.setPosition(0.18);
+            }
+            if(gamepad2.right_bumper){
+                robot.collector.setPosition(0.28);
+            }
+            if(gamepad1.left_bumper){
+                robot.collector.setPosition(0.18);
+            }
+            if(gamepad1.right_bumper) {
+                robot.collector.setPosition(0.28);
+            }
+            if (gamepad2.x)  {
+                robot.autobroom.setPower(-1);}
+
+            if (gamepad1.x) {
+                robot.autobroom.setPower(-1);
+            }
+            if (gamepad2.a)  {
+                robot.autobroom.setPower(1);
+            }
+
+            if (gamepad1.a) {
+                robot.autobroom.setPower(1);
+            }
+            if (gamepad2.b)  {
+                robot.autobroom.setPower(0);
+            }
+
+            if (gamepad1.b) {
+                robot.autobroom.setPower(0);
+            }
+
+            if (gamepad2.y) {
+                robot.collector.setPosition(0.28);
+                robot.autobroom.setPower(1);
+            }
+            if (gamepad1.y) {
+                robot.collector.setPosition(0.28);
+                robot.autobroom.setPower(1);
+            }
+
+            left = -gamepad1.left_stick_y * 10;
+            right = -gamepad1.right_stick_y * 10;
+
+            robot.rightMotor.setPower(right);
+            robot.leftMotor.setPower(left);
+
+            left = -gamepad1.left_stick_y * 10;
+            right = -gamepad1.right_stick_y * 10;
+
+            robot.rightMotor.setPower(right);
+            robot.leftMotor.setPower(left);
+        }
+    }
+}
